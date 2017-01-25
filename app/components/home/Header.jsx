@@ -6,13 +6,25 @@ class HeaderComponent extends Component {
     constructor() {
       super();
       this.defaultValues = {
-        myClientId: 'ob3D0GM0Rwj9toWCQj73IPjrndJPtF3D',
+        myClientId: 'izr8e64XiiG61MzN6135kRfvmkSbgL8z',
         myDomain: 'lordbic.eu.auth0.com'
       }
   }
+  //myClientId: 'ob3D0GM0Rwj9toWCQj73IPjrndJPtF3D',
 
   componentWillMount() {
     this.lock = new Auth0Lock(this.defaultValues.myClientId, this.defaultValues.myDomain);
+    //On authentication
+    this.lock.on('authenticated', (authResult) => {
+      //console.log(authResult);
+      this.lock.getProfile(authResult.idToken, (error, profile) =>{
+        if(error){
+          console.log(error);
+          return;
+        }
+        console.log(profile);
+      });
+    });
   }
   showLock() {
     this.lock.show();
