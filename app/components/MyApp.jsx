@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
 import Profile from './github/Profile';
 import Search from './github/Search';
 
